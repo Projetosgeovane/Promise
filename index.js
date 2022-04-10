@@ -10,16 +10,9 @@ const fs = require("fs/promises");
 const soma = (a, b) => {
   return new Promise(async (resolve, reject) => {
     if (typeof (a + b) != "numero") {
-      return resolve(console.log("Deu certo"))
+      return reject(console.log("Deu certo"))
     }
-    const somaTotal = a + b;
-    try {
-      await fs.appendFile("resultado.txt", `${a} + ${b} = ${somaTotal}\n`);
-      console.log("Arquivo criado com sucesso");
-      console.log(`Soma= ${somaTotal}`);
-    } catch {
-      console.log("Erro na criação do arquivo");
-    }
+   resolve(await fs.appendFile("resultado.txt", `${a} + ${b}\n`), console.log(a + b));
   });
 }
 
